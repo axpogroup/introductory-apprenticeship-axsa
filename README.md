@@ -11,6 +11,7 @@ This repository is configured to work with GitHub Codespaces for a seamless deve
 
 1. **Create a Codespace:**
    - Go to your GitHub repository
+   - Create your own branch if you haven't already
    - Click the green "Code" button
    - Select "Codespaces" tab
    - Click "Create codespace on main"
