@@ -1,0 +1,13 @@
+# Python dependencies for the introductory apprenticeship project
+# Add any additional packages your project needs here
+
+# Common packages for data science and development
+jupyter
+matplotlib
+numpy
+pandas
+
+# Development tools
+black
+flake8
+pytest
