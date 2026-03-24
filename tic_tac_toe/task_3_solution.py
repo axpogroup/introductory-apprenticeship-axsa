@@ -1,4 +1,3 @@
-
 board = [" "] * 9
 win_condition = [
     (0, 1, 2), (3, 4, 5), (6, 7, 8), (0, 3, 6), (1, 4, 7), (2, 5, 8), (0, 4, 8), (2, 4, 6)
@@ -70,9 +69,8 @@ def input_validation(placed_mark_str):
 def main():
     introduction()
     game_board()
-    while True:
-        placed_mark_str = get_user_input()
-        input_validation(placed_mark_str)
+    placed_mark_str = get_user_input()
+    input_validation(placed_mark_str)
 
 
 

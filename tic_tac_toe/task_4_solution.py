@@ -1,8 +1,7 @@
-board = [" "] * 9
 win_condition = [
     (0, 1, 2), (3, 4, 5), (6, 7, 8), (0, 3, 6), (1, 4, 7), (2, 5, 8), (0, 4, 8), (2, 4, 6)
 ]
-def game_board():
+def game_board(board):
     print("-------------")
     print("|", board[0], "|", board[1], "|", board[2], "|")
     print("-------------")
@@ -21,51 +20,50 @@ def get_user_input():
     placed_mark_str = input("Enter position (1-9): ")
     return placed_mark_str
 
-def check_winner():
+def check_winner(board):
     for a,b,c in win_condition:
         if board[a] == board[b] == board[c] != " ":
             return board[a]
     return None
 
+
 def rematch():
-    rematch = input("Do you want to play again? (yes/no): ")
-    if rematch.lower() == "yes":
-        global board
-        board = [" "] * 9
-        tic_tac_toe()
+    answer = input("Do you want to play again? (yes/no): ")
+    if answer.lower() == "yes":
+        return [" "] * 9
     else:
         print("Thanks for playing!")
         quit()
 
-def input_validation(placed_mark_str):
+def input_validation(placed_mark_str, board):
     while True:
         game_turn = board.count("X") + board.count("O")
         current_player = "X"
         if placed_mark_str in "123456789" and len(placed_mark_str) == 1:
+
             if board[int(placed_mark_str) - 1] != " ":
                 print("Position already taken. Please choose another position.")
                 placed_mark_str = get_user_input()
                 continue
 
             placed_mark = int(placed_mark_str) - 1
-            print("its working")
 
             if board.count("X") > board.count("O"):
                 current_player = "O"
 
             board[placed_mark] = current_player
-            game_board()
-            winner = check_winner()
+            game_board(board)
+            winner = check_winner(board)
             if winner:
                 print(f"Game Over! Player {winner} wins!")
-                rematch()
+                return rematch()
 
 
             if game_turn == 8:
                 print("Game Over! It's a tie!")
-                rematch()
+                return rematch()
 
-
+            return board
         else:
             print("Invalid input. Please enter a number between 1 and 9")
 
@@ -74,11 +72,13 @@ def input_validation(placed_mark_str):
 
 
 def tic_tac_toe():
+    board = [" "] * 9
     gameplay()
-    game_board()
+    game_board(board)
+
     while True:
         placed_mark_str = get_user_input()
-        input_validation(placed_mark_str)
+        board = input_validation(placed_mark_str, board)
 
 
 
