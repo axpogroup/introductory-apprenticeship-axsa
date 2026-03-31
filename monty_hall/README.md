@@ -47,7 +47,7 @@ Requirements:
 - Randomly choose a player door
 - Host opens a goat door
 - Player switches
-- Return True if the player wi
+- Return True if the player wins
 
 ## Task 4 – Simulation Proof (Core Challenge)
 Write code that simulates 10,000 Monty Hall games and count wins when staying vs switching.
