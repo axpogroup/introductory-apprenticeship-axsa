@@ -1,5 +1,8 @@
+import random
 win_condition = [
-    (0, 1, 2), (3, 4, 5), (6, 7, 8), (0, 3, 6), (1, 4, 7), (2, 5, 8), (0, 4, 8), (2, 4, 6)
+    (0, 1, 2), (3, 4, 5), (6, 7, 8),
+    (0, 3, 6), (1, 4, 7), (2, 5, 8),
+    (0, 4, 8), (2, 4, 6)
 ]
 def game_board(board):
     print("-------------")
@@ -12,8 +15,7 @@ def game_board(board):
 
 def gameplay():
     print("Welcome to Tic Tac Toe!")
-    print("Player 1: X")
-    print("Player 2: O")
+    print("You are player X. Computer is player O.")
     print("Enter the position (1-9) to place your mark:")
 
 def get_user_input():
@@ -40,7 +42,6 @@ def input_validation(placed_mark_str, board):
         game_turn = board.count("X") + board.count("O")
         current_player = "X"
         if placed_mark_str in "123456789" and len(placed_mark_str) == 1:
-
             if board[int(placed_mark_str) - 1] != " ":
                 print("Position already taken. Please choose another position.")
                 placed_mark_str = get_user_input()
@@ -48,12 +49,18 @@ def input_validation(placed_mark_str, board):
 
             placed_mark = int(placed_mark_str) - 1
 
-            if board.count("X") > board.count("O"):
-                current_player = "O"
 
             board[placed_mark] = current_player
-            game_board(board)
+            if game_turn != 8:
+                empty_positions = [i for i, spot in enumerate(board) if spot == " "]
+                bot_move = random.choice(empty_positions)
+
+                print(f"Computer chooses position {bot_move + 1}")
+                board[bot_move] = "O"
+                game_board(board)
+
             winner = check_winner(board)
+
             if winner:
                 print(f"Game Over! Player {winner} wins!")
                 return rematch()
