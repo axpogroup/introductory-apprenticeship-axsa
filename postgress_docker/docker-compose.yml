@@ -1,0 +1,31 @@
+services:
+  notebook:
+    build: .
+    container_name: apprentice-notebook
+    ports:
+      - "8888:8888"
+    volumes:
+      - ./:/app
+    environment:
+      DB_USER: apprentice
+      DB_PASS: apprentice_pw
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_NAME: apx_data
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:16
+    container_name: apprentice-postgres
+    environment:
+      POSTGRES_USER: apprentice
+      POSTGRES_PASSWORD: apprentice_pw
+      POSTGRES_DB: apx_data
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:

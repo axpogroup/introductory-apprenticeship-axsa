@@ -11,3 +11,12 @@ pandas
 black
 flake8
 pytest
+
+
+sqlalchemy
+psycopg
+jupyterlab
+seaborn
+requests
+beautifulsoup4
+
